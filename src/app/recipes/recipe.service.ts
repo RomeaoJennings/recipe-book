@@ -28,8 +28,6 @@ export class RecipeService {
       )
   ];
 
-  public recipeSelected = new EventEmitter<Recipe>();
-
   public getRecipes() {
     return this.recipes.slice();
   }
