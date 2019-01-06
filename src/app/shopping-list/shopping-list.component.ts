@@ -11,13 +11,17 @@ import { ShoppingListService } from './shopping-list.service';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  private ingredients: Ingredient[];
+  ingredients: Ingredient[];
   private subscription: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) {}
 
   onIngredientAdded(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
+  }
+
+  onEditItem(index: number) {
+    this.shoppingListService.startedEditing.next(index);
   }
 
   ngOnInit() {
