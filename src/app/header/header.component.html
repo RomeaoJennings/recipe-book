@@ -18,13 +18,16 @@
           <li><a routerLink="/signup" routerLinkActive="router-link-active">Register</a></li>
           <li><a routerLink="/signin" routerLinkActive="router-link-active">Log In</a></li>
         </ng-template>
-        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
-          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
-            <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
-          </ul>
-        </li>
+        <ng-template [ngIf]="authService.isAuthenticated()">
+            <li><a role="button" (click)="onLogout()">Log Out</a></li>
+            <li class="dropdown" appDropdown>
+              <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+                <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
+              </ul>
+            </li>
+        </ng-template>
       </ul>
     </div>
   </div>
