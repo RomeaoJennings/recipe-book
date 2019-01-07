@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class DataStorageService {
@@ -11,8 +12,8 @@ export class DataStorageService {
 
   constructor(
     private http: Http,
-    private recipeService: RecipeService) {
-
+    private recipeService: RecipeService,
+    private authService: AuthService) {
   }
 
   storeRecipes() {
@@ -20,7 +21,8 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.http.get(this.sourceUrl + 'recipes.json')
+    const token = this.authService.getToken();
+    return this.http.get(this.sourceUrl + 'recipes.json?auth=' + token)
       .pipe(map((response: Response) => {
         const recipes: Recipe[] = response.json();
         for (const recipe of recipes) {
