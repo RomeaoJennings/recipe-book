@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import { FirebaseConfig } from './config';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     firebase.initializeApp({
-      apiKey: 'AIzaSyARoxJEeuxD6ndeiipPxj_CiHFjZEH6Voo',
-      authDomain: 'ng-recipe-book-bdeb9.firebaseapp.com'
+      apiKey: FirebaseConfig.apiKey,
+      authDomain: FirebaseConfig.authDomain
     });
   }
 
